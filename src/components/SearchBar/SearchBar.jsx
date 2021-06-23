@@ -8,23 +8,23 @@ export default class SearchBar extends Component {
         }
     }
 
-    hnadleChange = (event) => { 
+    handleChange = (event) => { 
         this.setState({
         [event.target.name]: event.target.value,
         });
     }
 
-    handleSumbit = (event) => { 
+    handleSubmit = (event) => { 
         event.preventDefault();
-        // need to call the search function here. 
+        this.props.getSearchResults(this.state.searchValue) 
     }
 
     render() {
         return (
             <div className='search-form'>
-               <form onSubmit={() => this.handleSumbit()}>
-                    <input type="text" name='name' onChange={() => this.handleChange()} value={this.searchValue}/>
-
+               <form onSubmit={(event) => this.handleSubmit(event)}>
+                    <input type="text" name='searchValue' onChange={this.handleChange} value={this.searchValue}/>
+                    <button type="submit">Search</button>
                </form>
             </div>
         )
