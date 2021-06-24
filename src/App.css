@@ -1,0 +1,44 @@
+
+
+
+.nav-bar { 
+    position: fixed;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    height: 4.5em;
+    z-index: 500;
+}
+
+.logo { 
+    background-color: rgb(0, 192, 250);
+    border-radius: 10px;
+    padding: 8px 8px 0 8px;
+}
+
+.video-container { 
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0.5rem;
+    margin-top: 12vh;
+}
+
+.suggestedSection { 
+    color: aliceblue;
+    background-color: rgb(29, 27, 34);
+    min-width: 30vw;
+    min-height: 58vh;
+    margin: 0 5px;
+    justify-content: center;
+    text-align: center;
+}
+
+.info-area { 
+    margin: 0.5rem;
+    max-width: 63.5vw;
+    border-top: rgb(75, 75, 75) 1px solid;
+    border-bottom: rgb(70, 70, 70) 1px solid;
+}

@@ -1,20 +1,21 @@
 import React from 'react';
+import "./suggestedVideos.css";
 
 function SuggestedVideos(props){
     console.log(props);
     if(props.videosObjects === false){
         return(
             <div>
-                <h1>Suggested Videos</h1>
+               
             </div>
         );
     }
     else {
         let videos = props.videosObjects.map(function(video, index){
             return (
-              <tr onClick={() => {props.videoSelection(index + 1)}}> 
+              <tr className="video-row" onClick={() => {props.videoSelection(index + 1)}}> 
                 <td>{video.snippet.title}</td>
-                <img src={video.snippet.thumbnails.default.url} />
+                <img className="thumb-img" src={video.snippet.thumbnails.default.url} />
                
               </tr>
             );
@@ -23,7 +24,7 @@ function SuggestedVideos(props){
         return(
             <div>
                 <div>
-                    <h1>Suggested Videos</h1>
+                    <h1 className="suggested-title">Suggested Videos</h1>
                     <table>
                         {videos}
                     </table>

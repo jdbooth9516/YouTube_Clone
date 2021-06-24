@@ -1,8 +1,11 @@
-import './App.css';
 import axios from 'axios'
 import React, { Component } from 'react'
 import SearchBar from './components/SearchBar/SearchBar';
 import SuggestedVideos from './components/SuggestedVideos/suggestedVideos';
+import TitleBar from './components/TitleBar/TitleBar';
+import "bootstrap/dist/css/bootstrap.min.css";
+import './App.css';
+
 
 export class App extends Component {
   constructor(props){
@@ -10,7 +13,8 @@ export class App extends Component {
     this.state = { 
       videoIds: [],
       videoObjects: [],
-      currentVideo: ''
+      currentVideo: '',
+      currentVideoObj: null,
     }
   }
   //need to build out the search function and input where query is 
@@ -29,14 +33,16 @@ export class App extends Component {
     ))
     if (this.state.currentVideo === '') {
       this.setState({
-        currentVideo: this.state.videoIds[0]
+        currentVideo: this.state.videoIds[0],
+        currentVideoObj: this.state.videoObjects[0]
       });
    }
   }
   
   getVideoSelection = (selection) => {
     this.setState ({
-      currentVideo: this.state.videoIds[selection]
+      currentVideo: this.state.videoIds[selection],
+      currentVideoObj: this.state.videoObjects[selection]
     });
     this.getSearchResults(this.state.videoObjects[selection].snippet.title);
     setTimeout (() => { 
@@ -50,23 +56,38 @@ export class App extends Component {
       <div>
         <div className="nav-bar">
           <div className="logo">
-            <h1> YouClone</h1>
+            <h2> YouClone </h2>
           </div>
           <div className="search-bar">
-            <SearchBar getSearchResults={this.getSearchResults}/>
+            <SearchBar getSearchResults={this.getSearchResults} />
           </div>
         </div>
+        <div className="video-container">
+          <div className="video-player">
+            <iframe
+              id="ytplayer"
+              type="text/html"
+              width="854"
+              height="480"
+              src={`https://www.youtube.com/embed/${this.state. currentVideo}?autoplay=0&origin=http://example.com`}
+              frameborder="0"
+            ></iframe>
+          </div>
 
-        <div className='video-player'>
-          <iframe id="ytplayer" type="text/html" width="640" height="360"
-            src={`https://www.youtube.com/embed/${this.state.currentVideo}?autoplay=0&origin=http://example.com`}
-            frameborder="0"></iframe>
-        </div>
-          <div className='suggestedSection'>
-            <SuggestedVideos videosObjects={this.state.videoObjects.slice(1,5)} videoSelection={this.getVideoSelection}/>
+          <div className="suggestedSection">
+            <SuggestedVideos
+              videosObjects={this.state.videoObjects.slice(1, 5)}
+              videoSelection={this.getVideoSelection}
+            />
           </div>
+        </div>
+        <div className="info-area">
+          {this.state.currentVideoObj ? (
+            <TitleBar currentVideo={this.state.currentVideoObj} />
+          ) : <h3>Title Here</h3>}
+        </div>
       </div>
-    )
+    );
   }
 }
 
