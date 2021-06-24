@@ -9,11 +9,15 @@ function SuggestedVideos(props){
             </div>
         );
     }
-    else{
-        let videos = props.videosObjects.map(function(video){
-            return <tr>
-                    <img src={video.snippet.thumbnails.default.url}/>
-                </tr>
+    else {
+        let videos = props.videosObjects.map(function(video, index){
+            return (
+              <tr onClick={() => {props.videoSelection(index + 1)}}> 
+                <td>{video.snippet.title}</td>
+                <img src={video.snippet.thumbnails.default.url} />
+               
+              </tr>
+            );
             
         })
         return(
