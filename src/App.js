@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import SearchBar from './components/SearchBar/SearchBar';
 import SuggestedVideos from './components/SuggestedVideos/suggestedVideos';
 import TitleBar from './components/TitleBar/TitleBar';
+import Comments from './components/Comments/Comments';
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 
@@ -10,16 +11,18 @@ import './App.css';
 export class App extends Component {
   constructor(props){
     super(props)
-    this.state = { 
+    this.state = {
       videoIds: [],
       videoObjects: [],
-      currentVideo: '',
+      currentVideo: "67gYEK4FtzA",
       currentVideoObj: null,
-    }
+    };
   }
   //need to build out the search function and input where query is 
   getSearchResults  = async (search) => { 
-    let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${search}&type=video&key=AIzaSyCoqGH89zTrGir_zyhiiW6qFlhs_mGbm7M&part=snippet`)
+    let response = await axios.get(
+      `https://www.googleapis.com/youtube/v3/search?q=${search}&type=video&key=AIzaSyBfujvtTWvjKZ1BnAuWjb9RU5h3pYkeeQc&part=snippet`
+    );
     if (this.state.videoObjects.length !== 0) {
       this.setState({
         videoIds: [],
@@ -69,7 +72,8 @@ export class App extends Component {
               type="text/html"
               width="854"
               height="480"
-              src={`https://www.youtube.com/embed/${this.state. currentVideo}?autoplay=0&origin=http://example.com`}
+              src={`https://www.youtube.com/embed/${this.state.currentVideo}?autoplay=0&origin=http://example.com`}
+              // `https://www.youtube.com/embed/${this.state.currentVideo}?autoplay=0&origin=http://example.com`
               frameborder="0"
             ></iframe>
           </div>
@@ -84,7 +88,11 @@ export class App extends Component {
         <div className="info-area">
           {this.state.currentVideoObj ? (
             <TitleBar currentVideo={this.state.currentVideoObj} />
-          ) : <h3>Title Here</h3>}
+          ) : null}
+        </div>
+        <div>
+        {/* <div>{this.state.currentVideoObj ? <Comments videoId={this.state.currentVideo}/> : null} */}
+        <Comments videoId={this.state.currentVideo}/>
         </div>
       </div>
     );
