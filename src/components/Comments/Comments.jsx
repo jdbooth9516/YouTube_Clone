@@ -19,18 +19,32 @@ export default class Comments extends Component {
   }
 
   componentDidMount = () => {
-    this.getComments(this.props.videoId);
+    this.getComments();
     // setTimeout (() =>{this.filterComments()}, 1500)
     console.log(this.state.comments);
   };
 
+  componentDidUpdate = () =>{
+    this.getComments();
+  }
+
   getComments = async () => {
     let response = await axios.get(`http://127.0.0.1:8000/comments/`);
-    response.data.map(
-      (comment) => (
+    if (this.state.comments !==0){
+      this.setState ({
+        comments: []
+      })
+       response.data.map(
+         (comment) => (
+           this.state.comments.push(comment), console.log(response.data)
+         )
+       );
+    } else {
+    response.data.map((comment) => (
         this.state.comments.push(comment), console.log(response.data)
       )
     );
+    }
   this.filterComments()
   };
 
@@ -87,8 +101,8 @@ export default class Comments extends Component {
     console.log(this.props.videoId)
    let filter = this.state.comments.filter(comment => comment.video_id.includes(this.props.videoId))
     if(this.state.filteredComments.length !== 0){
-      this.state.filteredComments = []
-    this.setState({
+      this.setState({
+      filteredComments: [],
       filteredComments: filter
     });
   }
