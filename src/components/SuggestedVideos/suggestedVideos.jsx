@@ -26,6 +26,7 @@ function SuggestedVideos(props){
                 <div>
                     <h1 className="suggested-title">Suggested Videos</h1>
                     <table>
+                        <h1>Suggested Videos</h1>
                         {videos}
                     </table>
                 </div>

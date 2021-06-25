@@ -36,6 +36,7 @@ export class App extends Component {
       this.state.videoIds.push(item.id.videoId),
       this.state.videoObjects.push(item)
     ))
+
       this.setState({
         currentVideo: this.state.videoIds[0],
         currentVideoObj: this.state.videoObjects[0]
@@ -52,6 +53,7 @@ export class App extends Component {
       this.setState({})
     }, 1200)
   }
+
 
 
   render() {
