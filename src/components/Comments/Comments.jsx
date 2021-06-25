@@ -24,8 +24,11 @@ export default class Comments extends Component {
     console.log(this.state.comments);
   };
 
-  componentDidUpdate = () =>{
-    this.getComments();
+  componentDidUpdate(prevProps){
+    if (prevProps.videoId !== this.props.videoId){
+      console.log('hi');
+      this.getComments();
+    }
   }
 
   getComments = async () => {
