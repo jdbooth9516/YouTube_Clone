@@ -5,6 +5,7 @@ import { faThumbsDown } from "@fortawesome/free-regular-svg-icons";
 import Replies from "../Replies/Replies";
 import axios from "axios";
 import "./Comments.css";
+import CreateComment from "../CreateComment/createComment";
 
 export default class Comments extends Component {
   constructor(props) {
@@ -13,11 +14,13 @@ export default class Comments extends Component {
       visible: false,
       replyVisible: false,
       comments: [],
+      filteredComments: [],
     };
   }
 
   componentDidMount = () => {
-    this.getComments();
+    this.getComments(this.props.videoId);
+    // setTimeout (() =>{this.filterComments()}, 1500)
     console.log(this.state.comments);
   };
 
@@ -28,7 +31,7 @@ export default class Comments extends Component {
         this.state.comments.push(comment), console.log(response.data)
       )
     );
-    this.setState({});
+  this.filterComments()
   };
 
   updateLikes = async (id, key) => {
@@ -61,13 +64,48 @@ export default class Comments extends Component {
     this.setState({
       replyVisible: !this.state.replyVisible,
     })
+  }
+
+  addComment = async (comment) => {
+    await axios.post('http://127.0.0.1:8000/comments/', comment)
+    let response = await this.getComments()
+    if(response === undefined){
+      this.setState({
+
+      });
+    }
+    else{
+        this.setState({
+            comments: response.data
+        });
+        
+    }
+  }
+
+  filterComments = () => {
     
+    console.log(this.props.videoId)
+   let filter = this.state.comments.filter(comment => comment.video_id.includes(this.props.videoId))
+    if(this.state.filteredComments.length !== 0){
+      this.state.filteredComments = []
+    this.setState({
+      filteredComments: filter
+    });
+  }
+  else{
+    this.setState({
+      filteredComments: filter
+    });
+  }
   }
 
   render() {
     return (
       <div className="comment-section">
-        {this.state.comments.map((comment, index) => (
+        <div>
+          <CreateComment addComment={this.addComment} videoId={this.props.videoId}/>
+        </div>
+        {this.state.filteredComments.map((comment, index) => (
           <div className="comment-block">
             <p>{comment.body}</p>
             <div className="like-block">
