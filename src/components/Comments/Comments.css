@@ -1,0 +1,21 @@
+.comment-section {
+    display: flex; 
+    flex-direction: column;
+    margin-left: 2vw;
+}
+
+.comment-block { 
+    display: flex;
+    flex-direction: row;
+
+}
+
+.like-block { 
+    display: flex;
+    flex-direction: row;
+    margin-left: 2vw  
+}
+
+.thumb { 
+    margin-left: 1vw;
+}

@@ -1,5 +1,7 @@
 import axios from 'axios'
 import React, { Component } from 'react'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbsup } from "@fortawesome/free-regular-svg-icons";
 import SearchBar from './components/SearchBar/SearchBar';
 import SuggestedVideos from './components/SuggestedVideos/suggestedVideos';
 import TitleBar from './components/TitleBar/TitleBar';
@@ -34,12 +36,10 @@ export class App extends Component {
       this.state.videoIds.push(item.id.videoId),
       this.state.videoObjects.push(item)
     ))
-    if (this.state.currentVideo === '') {
       this.setState({
         currentVideo: this.state.videoIds[0],
         currentVideoObj: this.state.videoObjects[0]
       });
-   }
   }
   
   getVideoSelection = (selection) => {
@@ -73,7 +73,6 @@ export class App extends Component {
               width="854"
               height="480"
               src={`https://www.youtube.com/embed/${this.state.currentVideo}?autoplay=0&origin=http://example.com`}
-              // `https://www.youtube.com/embed/${this.state.currentVideo}?autoplay=0&origin=http://example.com`
               frameborder="0"
             ></iframe>
           </div>
