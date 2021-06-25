@@ -10,14 +10,6 @@ function SuggestedVideos(props){
             </div>
         );
     }
-<<<<<<< HEAD
-    else{
-        let videos = props.videosObjects.map(function(video){
-            return <tr>
-                        <td>{video.snippet.title}</td>
-                        <img src={video.snippet.thumbnails.default.url}/>
-                    </tr>
-=======
     else {
         let videos = props.videosObjects.map(function(video, index){
             return (
@@ -27,16 +19,12 @@ function SuggestedVideos(props){
                
               </tr>
             );
->>>>>>> 2c600c611e9c2d4502fcb5dc62dc8ccf7604483a
             
         })
         return(
             <div>
                 <div>
-<<<<<<< HEAD
-=======
                     <h1 className="suggested-title">Suggested Videos</h1>
->>>>>>> 2c600c611e9c2d4502fcb5dc62dc8ccf7604483a
                     <table>
                         <h1>Suggested Videos</h1>
                         {videos}

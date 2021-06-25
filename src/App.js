@@ -19,7 +19,7 @@ export class App extends Component {
     };
   }
   //need to build out the search function and input where query is 
-  getSearchResults  = async (search) => { 
+  getSearchResults  = async (search) => {
     let response = await axios.get(
       `https://www.googleapis.com/youtube/v3/search?q=${search}&type=video&key=AIzaSyBfujvtTWvjKZ1BnAuWjb9RU5h3pYkeeQc&part=snippet`
     );
@@ -29,18 +29,10 @@ export class App extends Component {
         videoObjects: []
       })
     }
-
     response.data.items.map((item) => (
       this.state.videoIds.push(item.id.videoId),
       this.state.videoObjects.push(item)
     ))
-<<<<<<< HEAD
-    this.setState({});
-    console.log(this.state.videoIds);
-    }
-    //   videoId: '', // put pathing to the video id here. 
-    // })
-=======
     if (this.state.currentVideo === '') {
       this.setState({
         currentVideo: this.state.videoIds[0],
@@ -59,7 +51,7 @@ export class App extends Component {
       this.setState({})
     }, 1200)
   }
->>>>>>> 2c600c611e9c2d4502fcb5dc62dc8ccf7604483a
+
 
 
   render() {
