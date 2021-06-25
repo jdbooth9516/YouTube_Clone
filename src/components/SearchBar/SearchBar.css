@@ -1,0 +1,21 @@
+.search-form {
+    padding: 1vh 1vw 0 17vw;
+    height: 2em;
+    min-height: 2em;
+}
+
+.search-bar{
+    margin-top: 1px;
+    padding-top: 1px;
+    height: 2.5em;
+    min-height: 2.5em;
+    min-width: 30vw;
+}
+
+.search-btn { 
+    height: 2.5em;
+    min-height: 2.5em;
+    margin-left: 5px;
+    margin-bottom: 2px;
+}
+

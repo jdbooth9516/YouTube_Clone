@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Button from "react-bootstrap/Button";
+import "./SearchBar.css"
 
 export default class SearchBar extends Component {
     constructor(props) {
@@ -22,9 +24,9 @@ export default class SearchBar extends Component {
     render() {
         return (
             <div className='search-form'>
-               <form onSubmit={(event) => this.handleSubmit(event)}>
-                    <input type="text" name='searchValue' onChange={this.handleChange} value={this.searchValue}/>
-                    <button type="submit">Search</button>
+               <form className="search" onSubmit={(event) => this.handleSubmit(event)}>
+                    <input className='search-bar' type="text" name='searchValue' onChange={this.handleChange} value={this.searchValue}/>
+                    <Button className='search-btn' variant='info' type="submit">Search</Button>
                </form>
             </div>
         )
