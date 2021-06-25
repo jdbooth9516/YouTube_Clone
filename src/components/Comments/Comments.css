@@ -19,3 +19,10 @@
 .thumb { 
     margin-left: 1vw;
 }
+
+.reply-button { 
+    background-color:rgb(29, 27, 34);
+    color: aliceblue;
+    border: rgb(29, 27, 34) solid 0px;
+    margin-left: 2vw;
+}

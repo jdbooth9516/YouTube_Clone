@@ -91,7 +91,8 @@ export default class Comments extends Component {
               />
             </div>
             <div>
-              <button onClick={() => this.makeVisible()}>reply</button>
+              {/* maybe move the visblepart to the actually reply class */}
+              <button className="reply-button" onClick={() => this.makeVisible()}>reply</button>
               {this.state.replyVisible ? (<Replies comment={index + 1} /> ): null}
             </div>
           </div>

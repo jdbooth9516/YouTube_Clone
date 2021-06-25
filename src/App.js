@@ -20,11 +20,12 @@ export class App extends Component {
       currentVideoObj: null,
     };
   }
-  //need to build out the search function and input where query is 
+  //grabs 5 videos display the first
   getSearchResults  = async (search) => { 
     let response = await axios.get(
       `https://www.googleapis.com/youtube/v3/search?q=${search}&type=video&key=AIzaSyBfujvtTWvjKZ1BnAuWjb9RU5h3pYkeeQc&part=snippet`
     );
+    //clears list in case of a second search
     if (this.state.videoObjects.length !== 0) {
       this.setState({
         videoIds: [],
@@ -42,7 +43,7 @@ export class App extends Component {
         currentVideoObj: this.state.videoObjects[0]
       });
   }
-  
+  // gets the video that the user clicked on and moves
   getVideoSelection = (selection) => {
     this.setState ({
       currentVideo: this.state.videoIds[selection],
