@@ -20,7 +20,7 @@ export class App extends Component {
       this.state.videoObjects.push(item)
     ))
     this.setState({});
-    console.log(this.state.videoObjects);
+    console.log(this.state.videoIds);
     }
     //   videoId: '', // put pathing to the video id here. 
     // })

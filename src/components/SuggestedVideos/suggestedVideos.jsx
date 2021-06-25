@@ -12,15 +12,16 @@ function SuggestedVideos(props){
     else{
         let videos = props.videosObjects.map(function(video){
             return <tr>
-                    <img src={video.snippet.thumbnails.default.url}/>
-                </tr>
+                        <td>{video.snippet.title}</td>
+                        <img src={video.snippet.thumbnails.default.url}/>
+                    </tr>
             
         })
         return(
             <div>
                 <div>
-                    <h1>Suggested Videos</h1>
                     <table>
+                        <h1>Suggested Videos</h1>
                         {videos}
                     </table>
                 </div>
