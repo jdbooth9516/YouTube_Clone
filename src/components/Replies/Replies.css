@@ -1,7 +1,15 @@
-.comment-btn { 
+.replies-btn { 
     background-color:rgb(29, 27, 34);
     color: rgb(0, 192, 250);
     border: rgb(29, 27, 34) solid 0px;
     margin-bottom: 2vh;
     font-size: 1em;
+}
+
+.reply-body { 
+    border-bottom:rgb(54, 54, 54) solid 1px;
+}
+
+.reply-block { 
+    margin-bottom: 2vh;
 }

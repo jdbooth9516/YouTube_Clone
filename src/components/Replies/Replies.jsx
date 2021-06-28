@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import axios from 'axios'
-import CreateReplies from '../createReplies/createReplies'
-import './Replies.css'
+import React, { Component } from 'react';
+import axios from 'axios';
+import CreateReplies from '../createReplies/createReplies';
+import './Replies.css';
 
 export default class Replies extends Component {
   constructor(props) {
@@ -47,7 +47,7 @@ export default class Replies extends Component {
   render() {
     return (
       <div className="reply-section">
-        <button className='comment-btn'
+        <button className='replies-btn'
           onClick={() => {
             this.makeVisible();
           }}
@@ -55,14 +55,14 @@ export default class Replies extends Component {
           view replies
         </button>
         {this.state.visiblity ? (
-          <div>
+          <div className="reply-section">
             {this.state.replies.map((reply) => (
               <div className="reply-block">
-                <p>{reply.body}</p>
+                <p className="reply-body">{reply.body}</p>
               </div>
             ))}
 
-            <button className='comment-btn'
+            <button className='replies-btn'
               onClick={() => {
                 this.addReplyVisible();
               }}

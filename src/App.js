@@ -8,6 +8,7 @@ import TitleBar from './components/TitleBar/TitleBar';
 import Comments from './components/Comments/Comments';
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
+import './components/Replies/Replies.css'
 
 
 export class App extends Component {
@@ -29,7 +30,7 @@ export class App extends Component {
 
   getHomeVideo = async() => {
      let response = await axios.get(
-       `https://www.googleapis.com/youtube/v3/search?maxResults=1&q=${this.state.homeName}&type=video&key=AIzaSyBfujvtTWvjKZ1BnAuWjb9RU5h3pYkeeQc&part=snippet`
+       `https://www.googleapis.com/youtube/v3/search?maxResults=1&q=${this.state.homeName}&type=video&key=AIzaSyCoqGH89zTrGir_zyhiiW6qFlhs_mGbm7M&part=snippet`
      );
      response.data.items.map(
        (item) => (

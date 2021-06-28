@@ -5,8 +5,8 @@ import { faThumbsDown } from "@fortawesome/free-regular-svg-icons";
 import Replies from "../Replies/Replies";
 import axios from "axios";
 import CreateComment from "../CreateComment/createComment";
-import CreateReplies from "../createReplies/createReplies";
 import "./Comments.css";
+import "../Replies/Replies.css"
 
 
 export default class Comments extends Component {
