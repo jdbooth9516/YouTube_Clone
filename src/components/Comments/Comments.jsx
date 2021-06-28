@@ -24,9 +24,9 @@ export default class Comments extends Component {
     console.log(this.state.comments);
   };
 
-  componentDidUpdate = () =>{
-    this.getComments();
-  }
+  // componentDidUpdate = () =>{
+  //   this.getComments();
+  // }
 
   getComments = async () => {
     let response = await axios.get(`http://127.0.0.1:8000/comments/`);
@@ -97,8 +97,8 @@ export default class Comments extends Component {
   }
 
   filterComments = () => {
-    
-    console.log(this.props.videoId)
+    console.log('running');
+    console.log(this.props.videoId);
    let filter = this.state.comments.filter(comment => comment.video_id.includes(this.props.videoId))
     if(this.state.filteredComments.length !== 0){
       this.setState({
