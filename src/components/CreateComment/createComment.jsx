@@ -42,7 +42,7 @@ class CreateComment extends Component {
                 <form onSubmit ={this.handleSubmit}>
                     <label>Comment:  </label>
                     <input  className="comment-field" type='text' name='body' onChange={this.handleChange} value={this.state.body}/>
-                    <input className="comment-submit" type='submit' value='submit'/>
+                    <input className="comment-submit" type='submit' value='Submit'/>
                 </form>
             </div>
         );

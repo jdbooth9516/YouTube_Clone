@@ -22,34 +22,34 @@ export default class Comments extends Component {
 
   componentDidMount = () => {
     this.getComments();
-    // setTimeout (() =>{this.filterComments()}, 1500)
     console.log(this.state.comments);
   };
 
-  componentDidUpdate(prevProps){
-    if (prevProps.videoId !== this.props.videoId){
+  componentDidUpdate(prevProps) {
+    if (prevProps.videoId !== this.props.videoId) {
       this.getComments();
     }
   }
 
   getComments = async () => {
     let response = await axios.get(`http://127.0.0.1:8000/comments/`);
-    if (this.state.comments !==0){
-      this.setState ({
-        comments: []
-      })
-       response.data.map(
-         (comment) => (
-           this.state.comments.push(comment), console.log(response.data)
-         )
-       );
+    if (this.state.comments !== 0) {
+      this.setState({
+        comments: [],
+      });
+      response.data.map(
+        (comment) => (
+          this.state.comments.push(comment), console.log(response.data)
+        )
+      );
     } else {
-    response.data.map((comment) => (
-        this.state.comments.push(comment), console.log(response.data)
-      )
-    );
+      response.data.map(
+        (comment) => (
+          this.state.comments.push(comment), console.log(response.data)
+        )
+      );
     }
-  this.filterComments()
+    this.filterComments();
   };
 
   updateLikes = async (id, key) => {
@@ -77,36 +77,37 @@ export default class Comments extends Component {
       });
     }
   };
+  ea;
 
   makeVisible = () => {
     this.setState({
       replyVisible: !this.state.replyVisible,
-    })
-  }
-
-  showForm = () => { 
-    this.setState({
-      visible: !this.state.visible, 
     });
-  }
+  };
+
+  showForm = () => {
+    this.setState({
+      visible: !this.state.visible,
+    });
+  };
 
   addComment = async (comment) => {
-    await axios.post('http://127.0.0.1:8000/comments/', comment)
-    let response = await this.getComments()
-    if(response === undefined){
+    await axios.post("http://127.0.0.1:8000/comments/", comment);
+    let response = await this.getComments();
+    if (response === undefined) {
+      this.setState({});
+    } else {
       this.setState({
-
+        comments: response.data,
       });
     }
-    else{
-        this.setState({
-            comments: response.data
-        });
-    }
-  }
+  };
 
-  addReply = async (reply) =>  { 
-    let response = await axios.post("http://127.0.0.1:8000/comments-reply/", reply);
+  addReply = async (reply) => {
+    let response = await axios.post(
+      "http://127.0.0.1:8000/comments-reply/",
+      reply
+    );
 
     if (response === undefined) {
       this.setState({});
@@ -114,39 +115,52 @@ export default class Comments extends Component {
       this.setState({
         comments: response.data,
       });
-      this.updateWindow()
+      this.updateWindow();
     }
-  }
+  };
 
   filterComments = () => {
-    console.log('running');
+    console.log("running");
     console.log(this.props.videoId);
-   let filter = this.state.comments.filter(comment => comment.video_id.includes(this.props.videoId))
-    if(this.state.filteredComments.length !== 0){
+    let filter = this.state.comments.filter((comment) =>
+      comment.video_id.includes(this.props.videoId)
+    );
+    if (this.state.filteredComments.length !== 0) {
       this.setState({
-      filteredComments: [],
-      filteredComments: filter
-    });
-  }
-  else{
-    this.setState({
-      filteredComments: filter
-    });
-  }
-  }
+        filteredComments: [],
+        filteredComments: filter,
+      });
+    } else {
+      this.setState({
+        filteredComments: filter,
+      });
+    }
+  };
 
-  updateWindow = () => { 
-    this.makeVisible()
+  updateWindow = () => {
+    this.makeVisible();
     this.forceUpdate();
     this.props.appUpdate();
-  }
+  };
 
   render() {
     return (
       <div className="comment-section">
         <div>
-          <button className="comment-btn" onClick={() => {this.showForm()}}>Add Comment</button>
-          {this.state.visible ? (<CreateComment addComment={this.addComment} videoId={this.props.videoId}/>) : null } 
+          <button
+            className="comment-btn"
+            onClick={() => {
+              this.showForm();
+            }}
+          >
+            Add Comment
+          </button>
+          {this.state.visible ? (
+            <CreateComment
+              addComment={this.addComment}
+              videoId={this.props.videoId}
+            />
+          ) : null}
         </div>
         {this.state.filteredComments.map((comment, index) => (
           <div className="comment-block">
@@ -173,9 +187,20 @@ export default class Comments extends Component {
             </div>
             <div>
               {/* maybe move the visblepart to the actually reply class */}
-              <button className="reply-button" onClick={() => this.makeVisible()}>reply</button>
-              {this.state.replyVisible ? (<CreateReplies addReply = {this.addReply} comment={index + 1} updateWindow={this.updateWindow}/>) : null}
-              {this.state.replyVisible ? (<Replies comment={index + 1} /> ): null}
+              <button
+                className="reply-button"
+                onClick={() => this.makeVisible()}
+              >
+                reply
+              </button>
+              {this.state.replyVisible ? (
+                <CreateReplies
+                  addReply={this.addReply}
+                  comment={index + 1}
+                  updateWindow={this.updateWindow}
+                />
+              ) : null}
+              {this.state.replyVisible ? <Replies comment={index + 1} /> : null}
             </div>
           </div>
         ))}

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./craeteReplies.css"
 
 class CreateReplies extends Component {
   constructor(props) {
@@ -36,13 +37,13 @@ class CreateReplies extends Component {
         <form onSubmit={this.handleSubmit}>
           <label>Reply: </label>
           <input
+            className="reply-field"
             type="text"
             name="body"
             onChange={this.handleChange}
             value={this.state.body}
           />
-          <br />
-          <input type="submit" value="submit" />
+          <input className="reply-submit" type="submit" value="Submit" />
         </form>
       </div>
     );
