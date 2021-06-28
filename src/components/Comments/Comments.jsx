@@ -79,11 +79,11 @@ export default class Comments extends Component {
   };
   ea;
 
-  makeVisible = () => {
-    this.setState({
-      replyVisible: !this.state.replyVisible,
-    });
-  };
+  // makeVisible = () => {
+  //   this.setState({
+  //     replyVisible: !this.state.replyVisible,
+  //   });
+  // };
 
   showForm = () => {
     this.setState({
@@ -138,9 +138,9 @@ export default class Comments extends Component {
   };
 
   updateWindow = () => {
-    this.makeVisible();
     this.forceUpdate();
     this.props.appUpdate();
+    this.setState({})
   };
 
   render() {
@@ -187,20 +187,7 @@ export default class Comments extends Component {
             </div>
             <div>
               {/* maybe move the visblepart to the actually reply class */}
-              <button
-                className="reply-button"
-                onClick={() => this.makeVisible()}
-              >
-                reply
-              </button>
-              {this.state.replyVisible ? (
-                <CreateReplies
-                  addReply={this.addReply}
-                  comment={index + 1}
-                  updateWindow={this.updateWindow}
-                />
-              ) : null}
-              {this.state.replyVisible ? <Replies comment={index + 1} /> : null}
+              <Replies comment={index + 1} addReply={this.addReply} updateWindow={this.updateWindow} />
             </div>
           </div>
         ))}
