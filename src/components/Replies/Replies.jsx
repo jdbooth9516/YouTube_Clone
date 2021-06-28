@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import CreateReplies from '../createReplies/createReplies'
+import './Replies.css'
 
 export default class Replies extends Component {
   constructor(props) {
@@ -46,7 +47,7 @@ export default class Replies extends Component {
   render() {
     return (
       <div className="reply-section">
-        <button
+        <button className='comment-btn'
           onClick={() => {
             this.makeVisible();
           }}
@@ -61,7 +62,7 @@ export default class Replies extends Component {
               </div>
             ))}
 
-            <button
+            <button className='comment-btn'
               onClick={() => {
                 this.addReplyVisible();
               }}
