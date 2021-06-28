@@ -16,8 +16,9 @@ export default class Replies extends Component {
 
     getReplies = async (commentId) => {
         let response = await axios.get(`http://127.0.0.1:8000/comments-reply/${commentId}/`)
-        this.state.replies.push(response.data)
-        this.setState({}) 
+        this.setState({
+            replies: response.data
+        }) 
     }
 
     render() {

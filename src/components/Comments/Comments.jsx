@@ -4,8 +4,10 @@ import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 import { faThumbsDown } from "@fortawesome/free-regular-svg-icons";
 import Replies from "../Replies/Replies";
 import axios from "axios";
-import "./Comments.css";
 import CreateComment from "../CreateComment/createComment";
+import CreateReplies from "../createReplies/createReplies";
+import "./Comments.css";
+
 
 export default class Comments extends Component {
   constructor(props) {
@@ -99,6 +101,19 @@ export default class Comments extends Component {
     }
   }
 
+  addReply = async (reply) =>  { 
+    let response = await axios.post("http://127.0.0.1:8000/comments-reply/", reply);
+
+    if (response === undefined) {
+      this.setState({});
+    } else {
+      this.setState({
+        comments: response.data,
+      });
+    }
+
+  }
+
   filterComments = () => {
     console.log('running');
     console.log(this.props.videoId);
@@ -148,6 +163,7 @@ export default class Comments extends Component {
             <div>
               {/* maybe move the visblepart to the actually reply class */}
               <button className="reply-button" onClick={() => this.makeVisible()}>reply</button>
+              <CreateReplies addReply = {this.addReply} comment={index + 1}/>
               {this.state.replyVisible ? (<Replies comment={index + 1} /> ): null}
             </div>
           </div>
