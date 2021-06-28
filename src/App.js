@@ -16,10 +16,33 @@ export class App extends Component {
     this.state = {
       videoIds: [],
       videoObjects: [],
+      homeName:"I Live for the S*** Mr. Robot",
       currentVideo: "67gYEK4FtzA",
       currentVideoObj: null,
     };
   }
+
+  componentDidMount = async() => {
+    this.getHomeVideo();
+    console.log(this.state.currentVideo);
+  } 
+
+  getHomeVideo = async() => {
+     let response = await axios.get(
+       `https://www.googleapis.com/youtube/v3/search?maxResults=1&q=${this.state.homeName}&type=video&key=AIzaSyBfujvtTWvjKZ1BnAuWjb9RU5h3pYkeeQc&part=snippet`
+     );
+     response.data.items.map(
+       (item) => (
+         this.state.videoIds.push(item.id.videoId),
+         this.state.videoObjects.push(item)
+       )
+     );
+     this.setState({
+       currentVideo: this.state.videoIds[0],
+       currentVideoObj: this.state.videoObjects[0],
+     });
+  }
+
   //grabs 5 videos display the first
   getSearchResults  = async (search) => { 
     let response = await axios.get(
@@ -41,6 +64,7 @@ export class App extends Component {
         currentVideoObj: this.state.videoObjects[0]
       });
   }
+
   // gets the video that the user clicked on and moves
   getVideoSelection = (selection) => {
     this.setState ({
