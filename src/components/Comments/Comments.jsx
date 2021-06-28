@@ -100,8 +100,8 @@ export default class Comments extends Component {
   }
 
   filterComments = () => {
-    
-    console.log(this.props.videoId)
+    console.log('running');
+    console.log(this.props.videoId);
    let filter = this.state.comments.filter(comment => comment.video_id.includes(this.props.videoId))
     if(this.state.filteredComments.length !== 0){
       this.setState({
