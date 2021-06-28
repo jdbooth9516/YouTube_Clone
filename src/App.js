@@ -76,6 +76,11 @@ export class App extends Component {
       this.setState({})
     }, 1200)
   }
+  
+  appUpdate = () => {
+    this.forceUpdate()
+    this.setState({})
+  }
 
   render() {
     return (
@@ -114,7 +119,7 @@ export class App extends Component {
         </div>
         <div>
         {/* <div>{this.state.currentVideoObj ? <Comments videoId={this.state.currentVideo}/> : null} */}
-        <Comments videoId={this.state.currentVideo}/>
+        <Comments videoId={this.state.currentVideo} appUpdate={this.appUpdate}/>
         </div>
       </div>
     );

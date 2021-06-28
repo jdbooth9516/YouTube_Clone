@@ -22,11 +22,12 @@ class CreateReplies extends Component {
       body: this.state.body,
     };
     this.props.addReply(reply);
+    this.props.updateWindow();
     this.setState({
       comment: this.props.comment,
       body: "",
-
     });
+    
   };
 
   render() {

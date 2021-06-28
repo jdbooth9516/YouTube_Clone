@@ -26,3 +26,11 @@
     border: rgb(29, 27, 34) solid 0px;
     margin-left: 2vw;
 }
+
+.comment-btn { 
+    background-color:rgb(29, 27, 34);
+    color: aliceblue;
+    border: rgb(29, 27, 34) solid 0px;
+    margin-bottom: 2vh;
+    font-size: 1.5em;
+}

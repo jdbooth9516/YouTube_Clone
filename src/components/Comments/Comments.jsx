@@ -28,7 +28,6 @@ export default class Comments extends Component {
 
   componentDidUpdate(prevProps){
     if (prevProps.videoId !== this.props.videoId){
-      console.log('hi');
       this.getComments();
     }
   }
@@ -85,6 +84,12 @@ export default class Comments extends Component {
     })
   }
 
+  showForm = () => { 
+    this.setState({
+      visible: !this.state.visible, 
+    });
+  }
+
   addComment = async (comment) => {
     await axios.post('http://127.0.0.1:8000/comments/', comment)
     let response = await this.getComments()
@@ -97,7 +102,6 @@ export default class Comments extends Component {
         this.setState({
             comments: response.data
         });
-        
     }
   }
 
@@ -110,8 +114,8 @@ export default class Comments extends Component {
       this.setState({
         comments: response.data,
       });
+      this.updateWindow()
     }
-
   }
 
   filterComments = () => {
@@ -131,11 +135,18 @@ export default class Comments extends Component {
   }
   }
 
+  updateWindow = () => { 
+    this.makeVisible()
+    this.forceUpdate();
+    this.props.appUpdate();
+  }
+
   render() {
     return (
       <div className="comment-section">
         <div>
-          <CreateComment addComment={this.addComment} videoId={this.props.videoId}/>
+          <button className="comment-btn" onClick={() => {this.showForm()}}>Add Comment</button>
+          {this.state.visible ? (<CreateComment addComment={this.addComment} videoId={this.props.videoId}/>) : null } 
         </div>
         {this.state.filteredComments.map((comment, index) => (
           <div className="comment-block">
@@ -163,7 +174,7 @@ export default class Comments extends Component {
             <div>
               {/* maybe move the visblepart to the actually reply class */}
               <button className="reply-button" onClick={() => this.makeVisible()}>reply</button>
-              <CreateReplies addReply = {this.addReply} comment={index + 1}/>
+              {this.state.replyVisible ? (<CreateReplies addReply = {this.addReply} comment={index + 1} updateWindow={this.updateWindow}/>) : null}
               {this.state.replyVisible ? (<Replies comment={index + 1} /> ): null}
             </div>
           </div>

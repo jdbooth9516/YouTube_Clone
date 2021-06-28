@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import "./createComment.css";
+
 
 class CreateComment extends Component {
     constructor(props){
@@ -39,9 +41,8 @@ class CreateComment extends Component {
             <div>
                 <form onSubmit ={this.handleSubmit}>
                     <label>Comment:  </label>
-                    <input type='text' name='body' onChange={this.handleChange} value={this.state.body}/>
-                    <br/>
-                    <input type='submit' value='submit'/>
+                    <input  className="comment-field" type='text' name='body' onChange={this.handleChange} value={this.state.body}/>
+                    <input className="comment-submit" type='submit' value='submit'/>
                 </form>
             </div>
         );

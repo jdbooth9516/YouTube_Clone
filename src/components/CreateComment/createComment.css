@@ -1,0 +1,14 @@
+.comment-field { 
+    color: aliceblue;
+  background-color:rgb(29, 27, 34);
+  border: rgb(29, 27, 34) solid 0px;
+  border-bottom: rgb(70, 70, 70) 1px solid;
+  margin: 2vh 2vw;
+  min-height: 3vh;
+}
+
+.comment-submit { 
+    color: aliceblue;
+    background-color:rgb(29, 27, 34);
+    border: rgb(29, 27, 34) solid 0px;
+}
