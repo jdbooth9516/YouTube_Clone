@@ -24,9 +24,12 @@ export default class Comments extends Component {
     console.log(this.state.comments);
   };
 
-  // componentDidUpdate = () =>{
-  //   this.getComments();
-  // }
+  componentDidUpdate(prevProps){
+    if (prevProps.videoId !== this.props.videoId){
+      console.log('hi');
+      this.getComments();
+    }
+  }
 
   getComments = async () => {
     let response = await axios.get(`http://127.0.0.1:8000/comments/`);
