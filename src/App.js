@@ -46,7 +46,8 @@ export class App extends Component {
   //grabs 5 videos display the first
   getSearchResults  = async (search) => { 
     let response = await axios.get(
-      `https://www.googleapis.com/youtube/v3/search?q=${search}&type=video&key=AIzaSyBfujvtTWvjKZ1BnAuWjb9RU5h3pYkeeQc&part=snippet`
+      `https://www.googleapis.com/youtube/v3/search?q=${search}&type=video&key=AIzaSyCoqGH89zTrGir_zyhiiW6qFlhs_mGbm7M
+      &part=snippet`
     );
     //clears list in case of a second search
     if (this.state.videoObjects.length !== 0) {

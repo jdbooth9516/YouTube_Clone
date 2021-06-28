@@ -77,13 +77,6 @@ export default class Comments extends Component {
       });
     }
   };
-  ea;
-
-  // makeVisible = () => {
-  //   this.setState({
-  //     replyVisible: !this.state.replyVisible,
-  //   });
-  // };
 
   showForm = () => {
     this.setState({
@@ -187,7 +180,7 @@ export default class Comments extends Component {
             </div>
             <div>
               {/* maybe move the visblepart to the actually reply class */}
-              <Replies comment={index + 1} addReply={this.addReply} updateWindow={this.updateWindow} />
+              <Replies comment={comment.id} addReply={this.addReply} updateWindow={this.updateWindow} />
             </div>
           </div>
         ))}

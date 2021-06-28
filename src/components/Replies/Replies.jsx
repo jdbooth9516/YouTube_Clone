@@ -39,7 +39,7 @@ export default class Replies extends Component {
   };
 
   updateWindow = () => {
-    this.getReplies(this.state.commentId);
+    // this.getReplies(this.state.commentId);
     this.forceUpdate();
   };
 
