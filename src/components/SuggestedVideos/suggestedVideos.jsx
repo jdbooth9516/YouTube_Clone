@@ -14,9 +14,9 @@ function SuggestedVideos(props){
         let videos = props.videosObjects.map(function(video, index){
             return (
               <tr className="video-row" onClick={() => {props.videoSelection(index + 1)}}> 
-                <td>{video.snippet.title}</td>
+                <a>{video.snippet.title}
                 <img className="thumb-img" src={video.snippet.thumbnails.default.url} />
-               
+               </a>
               </tr>
             );
             
