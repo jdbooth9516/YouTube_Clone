@@ -76,7 +76,7 @@ export class App extends Component {
     this.getSearchResults(this.state.videoObjects[selection].snippet.title);
     setTimeout (() => { 
       this.setState({})
-    }, 1200)
+    }, 800)
   }
   
   appUpdate = () => {

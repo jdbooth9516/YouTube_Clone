@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import CreateReplies from '../createReplies/createReplies';
-import './Replies.css';
+import React, { Component } from "react";
+import axios from "axios";
+import CreateReplies from "../createReplies/createReplies";
+import "./Replies.css";
 
 export default class Replies extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ export default class Replies extends Component {
     this.setState({
       replies: response.data,
     });
-    this.updateWindow()
+    this.updateWindow();
   };
 
   makeVisible = () => {
@@ -40,14 +40,16 @@ export default class Replies extends Component {
   };
 
   updateWindow = () => {
-    // this.getReplies(this.state.commentId);
-    this.forceUpdate();
+    // this.props.updateComments();
+    // this.forceUpdate()
+    this.setState({});
   };
 
   render() {
     return (
       <div className="reply-section">
-        <button className='replies-btn'
+        <button
+          className="replies-btn"
           onClick={() => {
             this.makeVisible();
           }}
@@ -62,7 +64,8 @@ export default class Replies extends Component {
               </div>
             ))}
 
-            <button className='replies-btn'
+            <button
+              className="replies-btn"
               onClick={() => {
                 this.addReplyVisible();
               }}
@@ -77,7 +80,9 @@ export default class Replies extends Component {
             addReply={this.props.addReply}
             getReply={this.getReplies}
             comment={this.state.commentId}
-            updateWindow={() => {this.updateWindow()}}
+            updateWindow={() => {
+              this.updateWindow();
+            }}
           />
         ) : null}
       </div>

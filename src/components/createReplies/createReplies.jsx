@@ -23,8 +23,8 @@ class CreateReplies extends Component {
       body: this.state.body,
     };
     this.props.addReply(reply);
-    this.props.getReply(this.state.comment);
-    this.props.updateWindow();
+    setTimeout(()=>{this.props.getReply(this.state.comment); }, 500)
+    
     this.setState({
       comment: this.props.comment,
       body: "",

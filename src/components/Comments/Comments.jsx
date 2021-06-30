@@ -6,8 +6,7 @@ import Replies from "../Replies/Replies";
 import axios from "axios";
 import CreateComment from "../CreateComment/createComment";
 import "./Comments.css";
-import "../Replies/Replies.css"
-
+import "../Replies/Replies.css";
 
 export default class Comments extends Component {
   constructor(props) {
@@ -131,9 +130,9 @@ export default class Comments extends Component {
   };
 
   updateWindow = () => {
-    this.forceUpdate();
-    this.props.appUpdate();
-    this.setState({})
+    // this.props.appUpdate();
+    // this.forceUpdate();
+    this.setState({});
   };
 
   render() {
@@ -162,7 +161,7 @@ export default class Comments extends Component {
               <p>{comment.likes}</p>
               <FontAwesomeIcon
                 onClick={() => {
-                  this.updateLikes(comment.video_id, index + 1);
+                  this.updateLikes(comment.video_id, comment.id);
                 }}
                 icon={faThumbsUp}
                 className="thumb"
@@ -172,15 +171,18 @@ export default class Comments extends Component {
               <p>{comment.dislikes}</p>
               <FontAwesomeIcon
                 onClick={() => {
-                  this.updateDislikes(comment.video_id, index + 1);
+                  this.updateDislikes(comment.video_id, comment.id);
                 }}
                 icon={faThumbsDown}
                 className="thumb"
               />
             </div>
             <div>
-              {/* maybe move the visblepart to the actually reply class */}
-              <Replies comment={comment.id} addReply={this.addReply} updateWindow={this.updateWindow} />
+              <Replies
+                comment={comment.id}
+                addReply={this.addReply}
+                updateComments={this.updateWindow}
+              />
             </div>
           </div>
         ))}
