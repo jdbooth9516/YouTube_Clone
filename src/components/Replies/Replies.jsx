@@ -16,11 +16,19 @@ export default class Replies extends Component {
   componentDidMount = () => {
     this.getReplies(this.state.commentId);
   };
+  componentDidUpdate = (prevProps) => {
+    if (prevProps.comment !== this.props.comment){
+      this.getReplies(this.state.commentId)
+    }
+  }
 
   getReplies = async (commentId) => {
     let response = await axios.get(
-      `http://127.0.0.1:8000/comments-reply/${commentId}/`
+      `http://127.0.0.1:8000/comments-reply/${this.props.comment}/`
     );
+    this.setState ({
+      replies: []
+    })
     this.setState({
       replies: response.data,
     });
