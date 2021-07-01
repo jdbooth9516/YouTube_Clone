@@ -1,4 +1,4 @@
-# This project is meant to have a backen with it  for the back end please follow this link 
+# This project is meant to have a backend with it  for the back end please follow this link 
 [backend](https://github.com/cwillett87/YouTube_Clone_Comments).
 this back end is written in django and will need a python venv to run. 
 
