@@ -1,4 +1,8 @@
-# This project is meant to have a backend with it  for the back end please follow this link 
+## Project focused on API
+This project was an exercise in using both third party API's (the videos) and self created API The comments and replies. 
+
+
+### This project is meant to have a backend with it  for the back end please follow this link 
 [backend](https://github.com/cwillett87/YouTube_Clone_Comments).
 this back end is written in django and will need a python venv to run. 
 
